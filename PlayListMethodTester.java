@@ -1,7 +1,7 @@
 public class PlayListMethodTester {
 
     public static void main(String[] args) {
-        if (args.length < 1) {
+         if (args.length < 1) {
             System.out.println("Please specify the method to test.");
             return;
         }
@@ -32,7 +32,7 @@ public class PlayListMethodTester {
                 testTitleOfShortestTrack();
                 break;
             default:
-                System.out.println("Unknown method to test.");
+                System.out.println("Unknown method to test."); 
         }
     }
 
