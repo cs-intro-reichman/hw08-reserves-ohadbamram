@@ -169,6 +169,8 @@ class PlayList {
     private int minIndex(int start) {
         if ((start < 0) || (start > size)) {// checks if start is valid
             return -1;
+        }else if(start == size - 1){
+            return start;
         }
         int minIndex = start;
         for(int i = start; i < size; i++){
@@ -192,7 +194,7 @@ class PlayList {
         // Uses the selection sort algorithm,  
         // calling the minIndex method in each iteration.
         Track temp = tracks[0];
-        for(int i = 0; i < size; i++){
+        for(int i = 0; i < size - 1; i++){
             int k = this.minIndex(i);
             temp = tracks[i];
             tracks[i] = tracks[k];
