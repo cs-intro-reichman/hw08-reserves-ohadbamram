@@ -106,11 +106,15 @@ class PlayList {
      *  If the list is empty, or the given index is negative or too big for this list, 
      *  does nothing and returns -1. */
     public void remove(int i) {
-        if ( !((i < 0) || (i > size) || (size == 0)) ) { //checks if i is valid input
-            for (int j = size; j > i; j--){
-                tracks[j - 1] = tracks[j];
+        if ((i >= 0) && (i <= size) && (size != 0)) { //checks if i is valid input
+            if (i == size - 1) {
+                removeLast();
+            }else{
+                 for (int j = i; j < size; j++){
+                    tracks[j] = tracks[j + 1];
+                }
+                size--;
             }
-            size--;
         }
     }
 
@@ -128,14 +132,14 @@ class PlayList {
             }
         }
         if (exist == true) { //if title is valid
-            this.remove(index);
+            remove(index);
         }
     }
 
     /** Removes the first track from this list. If the list is empty, does nothing. */
     public void removeFirst() {
         if (size > 0) {
-            this.remove(0);
+            remove(0);
         }
     }
     /** Checks if a track is a part of the playlis. */
@@ -150,10 +154,9 @@ class PlayList {
      *  If the total size of both lists is too large, does nothing. */
     //// An elegant and terribly inefficient implementation.
      public void add(PlayList other) {
-        if (this.size + other.size <= maxSize) { //checks that the sum of both sizes is valid
+        if (this.size + other.size <= this.maxSize) { //checks that the sum of both sizes is valid
             for(int i = 0; i < other.size; i++){ //enlarges the size and adds the tracks of other
-                if (inPlaylist(other.getTrack(i)) == false) { //checks if the track isn't already in the playlist
-                    this.size++;  
+                if (inPlaylist(other.getTrack(i)) == false) { //checks if the track isn't already in the playlist  
                     this.add(other.getTrack(i));  
                 }
             }
